@@ -1,0 +1,49 @@
+{
+	"name": "ng1-node-starter",
+	"version": "1.0.0",
+	"description": "Angular 1 application starter kit",
+	"repository": "https://github.com/rfprod/ng1ns.git",
+	"author": "rfprod",
+	"license": "MIT",
+	"private": true,
+	"dependencies": {
+		"angular": ">=1.5.7",
+		"angular-animate": ">=1.5.7",
+		"angular-loader": ">=1.5.7",
+		"angular-mocks": ">=1.5.7",
+		"angular-nvd3": "^1.0.9",
+		"angular-resource": ">=1.5.7",
+		"angular-sanitize": ">=1.5.7",
+		"angular-spinner": ">0.7.0",
+		"angular-translate": "^2.9.0",
+		"angular-ui-router": "^0.4.2",
+		"angular-websocket": ">=1.5.7",
+		"jquery": "^2.2.4",
+		"bootstrap-css": "~3.3.6",
+		"font-awesome": "fontawesome#^4.6.3",
+		"html5-boilerplate": "^5.3.0"
+	},
+	"overrides": {
+		"bootstrap-css": {
+			"main": [
+				"css/bootstrap.css",
+				"fonts/glyphicons-halflings-regular.eot",
+				"fonts/glyphicons-halflings-regular.svg",
+				"fonts/glyphicons-halflings-regular.ttf",
+				"fonts/glyphicons-halflings-regular.woff",
+				"fonts/glyphicons-halflings-regular.woff2"
+			]
+		},
+		"font-awesome": {
+			"main": [
+				"css/font-awesome.css",
+				"fonts/FontAwesome.otf",
+				"fonts/fontawesome-webfont.eot",
+				"fonts/fontawesome-webfont.svg",
+				"fonts/fontawesome-webfont.ttf",
+				"fonts/fontawesome-webfont.woff",
+				"fonts/fontawesome-webfont.woff2"
+			]
+		}
+	}
+}
