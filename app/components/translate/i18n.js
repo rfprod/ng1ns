@@ -168,4 +168,4 @@ function config($translateProvider) {
 
 }
 
-angular.module('ng1ns').config(config);
+angular.module('ng1ns').config(['$translateProvider', config]);
