@@ -44,7 +44,19 @@ gulp.task('server', () => {
 		host: 'localhost',
 		port: 7070,
 		livereload: true,
-		open: 'http://localhost:7070'
+		open: 'http://localhost:7070',
+		middleware: function(req, res, next) {
+			/*
+			*	config for SPA
+			*	returns index.html if condition is met
+			*	this ignores all requests to api endpoint, and to files with extensions
+			*/
+			if (req.url.match(/^\/(?!api)[^.]*$/)) {
+				console.log('httpServer middleware SPA config:', req.url);
+				req.url = '/index.html';
+			}
+			next();
+		}
 	}));
 });
 

@@ -5,17 +5,22 @@
 */
 //var apiHost = 'http://127.0.0.1:8001';
 
-//	dynamically set base url
-function setBaseUrl(host,absUrl) {
+/*
+*	dynamically set backend base url to be able to deploy on any domain
+*/
+function setBaseUrl(absUrl) {
+	/*
 	var root = absUrl.substring(0,absUrl.indexOf('#')-1);
 	if (host == 'localhost') return 'http://localhost:7070'; // development
 	else return root; // deployment
+	*/
+	return absUrl.match(new RegExp('http(s)?:\/\/[^/]+'))[0];
 }
 
 angular.module('ng1ns')
 
 .service('API', ['$resource', '$location', function($resource, $location) {
-	var baseUrl = setBaseUrl($location.$$host, $location.$$absUrl);
+	var baseUrl = setBaseUrl($location.$$absUrl);
 	console.log('abs base url:', baseUrl);
 
 	/*
