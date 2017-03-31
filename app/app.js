@@ -5,9 +5,11 @@ angular.module('ng1ns', [ // eslint-disable-line no-unused-vars
 	'ngAnimate',
 	'ngResource',
 	'ngSanitize',
+	'ngTouch',
 	'nvd3',
 	'pascalprecht.translate',
 	'ui.router',
+	'ui.bootstrap',
 
 	'ng1ns.version'
 ])
