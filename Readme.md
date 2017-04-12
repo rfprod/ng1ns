@@ -1,4 +1,4 @@
-## Angular 1 application starter kit
+## Angular 1 application starter kit (NG1NS)
 
 A starter kit for standalone Angular 1 application
 
