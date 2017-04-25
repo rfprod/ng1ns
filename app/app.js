@@ -62,13 +62,19 @@ angular.module('ng1ns', [ // eslint-disable-line no-unused-vars
 		});
 	}
 ])
-.run(['$rootScope', '$state', '$animate', 'Auth', function ($rootScope, $state, $animate, Auth){
-	$animate.enabled(true); // enable animations on app start
-	$rootScope.$state = $state;
-	$rootScope.$on('$stateChangeStart', function (event, toState) {
-		if ( ( toState.data === undefined || toState.data.requireAuth === undefined || toState.data.requireAuth ) && !Auth.authenticated()) {
-			event.preventDefault();
-			$state.go('app.sign-in');
-		}
-	});
-}]);
+.run(['$rootScope', '$state', '$animate', '$window', '$location', 'Auth',
+	function ($rootScope, $state, $animate, $window, $location, Auth) {
+		$animate.enabled(true); // enable animations on app start
+		$rootScope.$state = $state;
+		$rootScope.$on('$stateChangeStart', function (event, toState) {
+			if (toState.data.requiresAuth && !Auth.authenticated()) {
+				if ($location.$$host === 'localhost') {
+					console.log('no token, running on localhost, not refirecting');
+				} else {
+					event.preventDefault();
+					window.location.href='/';
+				}
+			}
+		});
+	}
+]);

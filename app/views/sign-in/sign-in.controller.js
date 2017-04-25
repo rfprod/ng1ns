@@ -43,8 +43,12 @@ angular.module('ng1ns')
 									$scope.user.model.role = userDetails.role;
 									$rootScope.$broadcast('saveuser');
 
+									/*
+									*	TODO
+									*	config this conditional chain
+									*/
 									if ($scope.user.model.role === 'admin') $state.go('app.admin.dashboard');
-									else $state.go('app.user.dashboard');
+									else if ($scope.user.model.role === 'user') { $state.go('app.user.dashboard'); }
 
 								} else {
 									console.log('Get Me Service, error:', response.error);
@@ -70,8 +74,12 @@ angular.module('ng1ns')
 			$rootScope.$broadcast('restoreuser');
 			if ($scope.user.model) {
 				if ($scope.user.model.token !== '') {
+					/*
+					*	TODO
+					*	config this conditional chain
+					*/
 					if ($scope.user.model.role === 'admin') $state.go('app.admin.dashboard');
-					if ($scope.user.model.role === 'user') $state.go('app.user.dashboard');
+					else if ($scope.user.model.role === 'user') $state.go('app.user.dashboard');
 				}
 			}
 			$scope.loading = false;
