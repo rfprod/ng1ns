@@ -11,7 +11,7 @@ if [ $NAME = "ruser" ];then
 	echo "development env"
 	http-server -a localhost -p 7070 -c-1 ./app
 else
-	echo "deployment env"
+	echo "production env"
 	#
 	#	TODO
 	#	replace 127.0.0.1 with proper IP address
