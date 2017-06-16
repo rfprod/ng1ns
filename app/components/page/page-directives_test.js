@@ -5,7 +5,7 @@ describe('ng1ns page directives: ', function () {
 	beforeEach(module('ng1ns'));
 	beforeEach(module('ngTemplates'));
 
-	var rootScope, scope, element, controller;
+	var rootScope, scope, element;
 
 	describe('pageTitle', function () {
 

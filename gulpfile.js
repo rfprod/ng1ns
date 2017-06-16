@@ -152,6 +152,7 @@ gulp.task('watch', () => {
 	gulp.watch('./app/css/app.scss', ['sass-autoprefix-minify-css']);
 	gulp.watch(['./app/*.js', './app/components/**/*.js','./app/views/**/*.js','./karma.conf.js'], ['client-unit-test']);
 	gulp.watch(['./app/*.js', './app/components/**/*.js','!./app/components/**/*_test.js','./app/views/**/*.js','!./app/views/**/*_test.js','./e2e-tests/*.js'], ['client-e2e-test']);
+	gulp.watch(['./app/**', './*.js'], ['lint']);
 });
 
 gulp.task('build', (done) => {
