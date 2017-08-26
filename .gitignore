@@ -1,6 +1,6 @@
 node_modules
 app/js/*.*
-!app/js/.gitignore
+!app/js/.gitkeep
 app/fonts/*.*
-!app/fonts/.gitignore
+!app/fonts/.gitkeep
 app/css/*.css
