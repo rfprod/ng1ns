@@ -1,40 +1,37 @@
 module.exports = function(config) {
 	config.set({
 
-		basePath: './app',
+		basePath: '',
 
 		files: [
-			'bower_components/jquery/dist/jquery.min.js',
-			'bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js', // eslint-disable-line indent
+			'./node_modules/jquery/dist/jquery.js',
+			'./node_modules/bootstrap/dist/js/bootstrap.js',
 
-			'bower_components/angular/angular.js',
-			'bower_components/angular-animate/angular-animate.js',
-			'bower_components/angular-touch/angular-touch.js',
-			'bower_components/angular-bootstrap/ui-bootstrap.js',
-			'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-			'bower_components/angular-loader/angular-loader.js',
-			'bower_components/angular-route/angular-route.js',
-			'bower_components/angular-resource/angular-resource.js',
-			'bower_components/angular-sanitize/angular-sanitize.js',
-			'bower_components/angular-spinner/dist/angular-spinner.js',
-			'bower_components/angular-translate/angular-translate.js',
-			'bower_components/angular-ui-router/release/angular-ui-router.js',
-			'bower_components/d3/d3.js',
-			'bower_components/nvd3/build/nv.d3.js',
-			'bower_components/angular-nvd3/dist/angular-nvd3.js',
-			'bower_components/angular-mocks/angular-mocks.js',
+			'./node_modules/angular/angular.js',
+			'./node_modules/angular-animate/angular-animate.js',
+			'./node_modules/angular-touch/angular-touch.js',
+			'./node_modules/angular-loader/angular-loader.js',
+			'./node_modules/angular-mocks/angular-mocks.js',
+			'./node_modules/angular-resource/angular-resource.js',
+			'./node_modules/angular-sanitize/angular-sanitize.js',
+			'./node_modules/angular-websocket/dist/angular-websocket.js',
+			'./node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
+			'./node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
+			'./node_modules/angular-ui-router/release/angular-ui-router.js',
+			'./node_modules/angular-spinner/dist/angular-spinner.js',
+			'./node_modules/angular-translate/dist/angular-translate.js',
 
-			'app.js',
-			'components/**/*.js',
-			'views/**/*.js',
-			'views/**/*.html'
+			'./app/app.js',
+			'./app/components/**/*.js',
+			'./app/views/**/*.js',
+			'./app/views/**/*.html'
 		],
 
 		frameworks: ['jasmine'],
 
 		// convert html-templates to js files for inclusion in tests
 		preprocessors: {
-			'views/**/*.html': ['ng-html2js']
+			'app/views/**/*.html': ['ng-html2js']
 		},
 
 		ngHtml2JsPreprocessor: {
@@ -56,21 +53,29 @@ module.exports = function(config) {
 		plugins: [
 			//'karma-chrome-launcher',
 			'karma-ng-html2js-preprocessor',
-			'karma-phantomjs-launcher',
+			//'karma-phantomjs-launcher',
+			'karma-chrome-launcher',
 			'karma-jasmine'
 		],
 
-		//browsers: ['Chrome'],
-		//browsers: ['Firefox'],
-		browsers: ['PhantomJS'],
-
-		phantomjsLauncher: {
+		customLaunchers: {
 			/*
-			*	exit phantomjs if a ResourceError is encountered
-			*	useful if karma exits without killing phantomjs)
+			*	this custom launcher requires setting env var CHROME_BIN=chromium-browser
+			*	possible options for env var value depending on what you have installed:
+			*	chromium-browser, chromium, google-chrome
 			*/
-			exitOnResourceError: true
+			ChromeHeadless: {
+				base: 'Chrome',
+				flags: [
+					'--headless',
+					'--disable-gpu',
+					// Without a remote debugging port Chrome exits immediately
+					'--remote-debugging-port=9222'
+				]
+			}
 		},
+		browsers: ['ChromeHeadless'],
+		//browsers : ['Chrome', 'Firefox'],
 		/*
 		*	overrides the error, warn instead
 		*	by default returns error if there're no tests defined

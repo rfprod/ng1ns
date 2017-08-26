@@ -1,6 +1,6 @@
-## Angular 1 application starter kit (NG1NS)
+## AngularJS application starter kit (NG1NS)
 
-A starter kit for standalone Angular 1 application
+A starter kit for standalone AngularJS application
 
 ### Requirements
 
@@ -11,7 +11,7 @@ A starter kit for standalone Angular 1 application
 * `./app` - application
   * `./app/components` - viewless components and respective unit-tests
   * `./app/css` - stylesheets (scss files are compiled to application css bundle)
-  * `./app/fonts` - vendor fonts (aggregated from bower_components)
+  * `./app/fonts` - vendor fonts
    * `./app/js` - bundled application components, and vendor scripts
   * `./app/img` - images
   * `./app/views` - view components and respective unit-test
