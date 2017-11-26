@@ -19,14 +19,16 @@ let httpServer,
 	protractor;
 
 function killProcessByName(name){
-	exec('ps -e | grep '+name, (error, stdout, stderr) => {
-		if (error) throw error;
-		if (stderr) console.log('stderr: ',stderr);
+	exec('pgrep ' + name, (error, stdout, stderr) => {
+		if (error) {
+			// throw error;
+			console.log('killProcessByName, error', error);
+		}
+		if (stderr) console.log('stderr: ', stderr);
 		if (stdout) {
-			//console.log('killing running processes:', stdout);
-			const runningProcessesIDs = stdout.match(/\d{3,6}/);
+			const runningProcessesIDs = stdout.match(/\d+/);
 			runningProcessesIDs.forEach((id) => {
-				exec('kill -9 '+id, (error, stdout, stderr) => {
+				exec('kill -9 ' + id, (error, stdout, stderr) => {
 					if (error) throw error;
 					if (stderr) console.log('stdout: ', stdout);
 					if (stdout) console.log('stderr: ', stderr);
@@ -36,8 +38,8 @@ function killProcessByName(name){
 	});
 }
 
-gulp.task('server', () => {
-	if (httpServer) httpServer.kill();
+gulp.task('dev-server', (done) => {
+	if (httpServer) httpServer.emit('kill');
 	httpServer = gulp.src('./app').pipe(webserver({
 		host: 'localhost',
 		port: 7070,
@@ -56,6 +58,7 @@ gulp.task('server', () => {
 			next();
 		}
 	}));
+	done();
 });
 
 gulp.task('client-unit-test', (done) => {
@@ -68,9 +71,13 @@ gulp.task('client-unit-test', (done) => {
 	}).start();
 });
 
-gulp.task('client-e2e-test', () => {
+gulp.task('client-e2e-test', (done) => {
 	if (protractor) protractor.kill();
 	protractor = spawn('npm', ['run', 'protractor'], {stdio: 'inherit'});
+	protractor.on('exit', (exitCode) => {
+		console.log('Protractor done, exited with code', exitCode);
+		done();
+	});
 });
 
 gulp.task('clean-build', () => { // clean old files before a new build
@@ -173,7 +180,7 @@ gulp.task('watch-and-lint', () => {
 });
 
 gulp.task('watch', () => {
-	gulp.watch(['./app/*.js','./app/components/**/*.js','!./app/components/**/*_test.js','./app/views/**/*.js','!./app/views/**/*_test.js'], ['concat-and-uglify-js']);
+	gulp.watch(['./app/*.js','./app/components/**/*.js','!./app/components/**/*_test.js','./app/views/**/*.js','!./app/views/**/*_test.js'], ['pack-app-js']);
 	gulp.watch('./app/css/app.scss', ['sass-autoprefix-minify-css']);
 	gulp.watch(['./app/*.js', './app/components/**/*.js','./app/views/**/*.js','./karma.conf.js'], ['client-unit-test']);
 	gulp.watch(['./app/*.js', './app/components/**/*.js','!./app/components/**/*_test.js','./app/views/**/*.js','!./app/views/**/*_test.js','./e2e-tests/*.js'], ['client-e2e-test']);
@@ -181,13 +188,17 @@ gulp.task('watch', () => {
 });
 
 gulp.task('build', (done) => {
-	runSequence('clean-build', 'lint', 'pack-app-js', 'pack-app-css', 'pack-vendor-js', 'pack-vendor-css', 'move-vendor-fonts', 'client-unit-test', 'client-e2e-test', done);
+	runSequence('clean-build', 'lint', 'pack-app-js', 'pack-app-css', 'pack-vendor-js', 'pack-vendor-css', 'move-vendor-fonts', done);
 });
 
-gulp.task('default', ['build', 'server', 'watch']);
+gulp.task('run-tests', (done) => {
+	runSequence('client-unit-test', 'client-e2e-test', done);
+});
+
+gulp.task('default', ['build', 'dev-server', 'run-tests', 'watch']);
 
 process.on('exit', () => {
-	if (httpServer) httpServer.kill();
+	if (httpServer) httpServer.emit('kill');
 	if (protractor) protractor.kill();
 });
 

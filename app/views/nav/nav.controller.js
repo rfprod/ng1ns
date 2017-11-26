@@ -15,7 +15,8 @@ angular.module('ng1ns')
 			}
 			return false;
 		};
-		$scope.showNavigation = function() {
+		$scope.showNavigation = function(isLanguageButton) {
+			if (isLanguageButton) return true;
 			console.log('$state.current.name', $state.current.name);
 			return (
 				$state.current.name !== 'app.register' &&

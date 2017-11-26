@@ -1,25 +1,31 @@
-## AngularJS application starter kit (NG1NS)
+# AngularJS application starter kit (NG1NS)
 
-A starter kit for standalone AngularJS application
+![build](https://travis-ci.org/rfprod/ng1ns.svg?branch=master)
 
-### Requirements
+## Requirements
 
-* NodeJS
+- [`Node.js`](https://nodejs.org/)
+- [`NPM`](https://nodejs.org/)
+- [`Git`](https://git-scm.com/)
 
-#### Project structure
+### Project structure
 
 * `./app` - application
   * `./app/components` - viewless components and respective unit-tests
   * `./app/css` - stylesheets (scss files are compiled to application css bundle)
   * `./app/fonts` - vendor fonts
-   * `./app/js` - bundled application components, and vendor scripts
+  * `./app/js` - bundled application components, and vendor scripts
   * `./app/img` - images
   * `./app/views` - view components and respective unit-test
 * `./e2e-tests` - protractor configuration and scenarios
 
-### Quickstart
+### Global dependencies
 
-just start it
+```
+sudo npm install -g gulp-cli
+```
+
+### Quickstart
 
 ```
 npm start
@@ -39,10 +45,10 @@ npm install
 npm start
 ```
 
-**production mode** (installs dependencies, runs `http-server`)
+**start prebuilt** (installs dependencies, runs `http-server`)
 
 ```
-npm run production-start
+npm run start-prebuilt
 ```
 
 ### Testing
@@ -52,7 +58,7 @@ npm run production-start
 continuous
 
 ```
-npm test
+npm run test-continous
 ```
 
 single run
@@ -66,3 +72,13 @@ npm run test-single-run
 ```
 npm run protractor
 ```
+
+#### All tests (unit + e2e)
+
+```
+npm test
+```
+
+## Licenses
+
+* [`Ng1NS`](LICENSE.md)
