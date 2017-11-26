@@ -50,8 +50,8 @@
 	"scripts": {
 		"prestart": "npm install",
 		"start": "gulp",
-		"start-prebuilt": "npm install && run-server.sh",
-		"server": "run-server.sh",
+		"start-prebuilt": "npm install && ./run-server.sh",
+		"server": "./run-server.sh",
 		"pretest": "npm install",
 		"test": "gulp run-tests",
 		"test-single-run": "gulp client-unit-test",
