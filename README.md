@@ -37,20 +37,6 @@ npm start
 npm install
 ```
 
-### Startup
-
-**development mode** (installs dependencies, runs `gulp` default task)
-
-```
-npm start
-```
-
-**start prebuilt** (installs dependencies, runs `http-server`)
-
-```
-npm run start-prebuilt
-```
-
 ### Testing
 
 #### Unit
