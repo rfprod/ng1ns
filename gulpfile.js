@@ -80,7 +80,7 @@ gulp.task('client-e2e-test', (done) => {
 	});
 });
 
-gulp.task('clean-build', () => { // clean old files before a new build
+gulp.task('clean-build', () => {
 	return del(['./app/css/*.css', './app/js/*.js', './app/fonts/*.otf', './app/fonts/*.eot', './app/fonts/*.svg', './app/fonts/*.ttf', './app/fonts/*.woff', './app/fonts/*.woff2']);
 });
 
@@ -140,7 +140,7 @@ gulp.task('pack-vendor-js', () => {
 		.pipe(gulp.dest('./app/js'));
 });
 
-gulp.task('pack-vendor-css', () => { // packs vendor css files which bowerFiles put into app/js folder on bower-files task execution
+gulp.task('pack-vendor-css', () => {
 	return gulp.src([
 		/*
 		*	add third party css files here
@@ -158,7 +158,7 @@ gulp.task('pack-vendor-css', () => { // packs vendor css files which bowerFiles 
 		.pipe(gulp.dest('./app/css'));
 });
 
-gulp.task('move-vendor-fonts', () => { // move vendor font files which bowerFiles put into app/fonts folder on bower-files task execution
+gulp.task('move-vendor-fonts', () => {
 	return gulp.src([
 		/*
 		*	add third party fonts here
