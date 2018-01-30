@@ -11,7 +11,7 @@ exports.config = {
 		}
 	},
 
-	directConnect: false,
+	directConnect: true,
 
 	chromeOnly: false,
 

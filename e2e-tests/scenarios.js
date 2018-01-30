@@ -5,7 +5,7 @@ describe('AdminUI', function() {
 	it('should automatically redirect all url-requests to /', function(done) {
 		browser.ignoreSynchronization = true;
 		browser.get('');
-		expect(browser.getLocationAbsUrl()).toMatch(/\//);
+		expect(browser.getCurrentUrl()).toMatch(/\//);
 
 		done();
 	});
@@ -37,7 +37,7 @@ describe('AdminUI', function() {
 
 		it('should render portfolio view when user navigates to /', function(done) {
 			browser.driver.manage().window().setSize(1024, 768);
-			expect(browser.getLocationAbsUrl()).toMatch(/\//);
+			expect(browser.getCurrentUrl()).toMatch(/\//);
 			expect(element(by.css('.flex-container')).isDisplayed()).toBeTruthy();
 			expect(element.all(by.css('.flex-item')).get(0).isDisplayed()).toBeTruthy();
 			expect(element.all(by.css('.flex-item')).get(1).isDisplayed()).toBeTruthy();
