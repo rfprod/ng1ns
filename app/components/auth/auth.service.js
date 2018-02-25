@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('ng1ns')
+/* global ng1nsServices */
 
+ng1nsServices
 	.factory('Auth', ['UserService', function(UserService) {
 		return {
 			authenticated: function() {

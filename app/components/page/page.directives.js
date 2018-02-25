@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('ng1ns')
+/* global ng1nsDirectives */
 
+ng1nsDirectives
 	.directive('pageTitle', ['$rootScope', function($rootScope) {
 		return {
 			templateUrl: 'views/common/pageTitle.html',

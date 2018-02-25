@@ -1,23 +1,28 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-	<div ng-if="displayError" class="alert alert-danger alert-dismissible" role="alert">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<div layout="column" layout-align="start stretch" layout-padding>
+	<div ng-if="displayError" class="warn">
 		{{displayError}}
 	</div>
 
-	<form class="form-signin" name="loginForm" novalidate ng-submit="signUserIn(loginForm.$valid)">
+	<form ng-cloak accept-charset="UTF-8" name="loginForm" novalidate ng-submit="signUserIn(loginForm.$valid)" layout="column" layout-padding align-items="start stretch">
 
-		<div class="form-group has-feedback" ng-class="{ 'has-error': loginForm.email.$invalid && submitted }">
-			<input type="email" id="email" name="email" class="form-control" placeholder="{{ 'Common.Form.Placeholder.Email' | translate }}" required autofocus ng-model="email">
-			<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-			<p ng-show="loginForm.email.$invalid && submitted" class="help-block">{{ 'Common.Form.Feedback.Email' | translate}}</p>
-		</div>
+		<md-input-container>
+			<input type="email" name="email" placeholder="{{ 'Common.Form.Placeholder.Email' | translate }}" required autofocus ng-model="email">
+			<md-icon class="fa fa-envelope"></md-icon>
+			<div ng-messages="loginForm.email.$error">
+				<div ng-message="required">{{ 'Common.Form.Feedback.Email' | translate}}</div>
+			</div>
+		</md-input-container>
 
-		<div class="form-group has-feedback" ng-class="{ 'has-error': loginForm.email.$invalid && submitted }">
-			<input type="password" id="password" name="password" class="form-control" placeholder="{{ 'Common.Form.Placeholder.Password' | translate }}" required ng-model="password">
-			<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-			<p ng-show="loginForm.password.$invalid && submitted" class="help-block">{{ 'Common.Form.Feedback.Password' | translate}}</p>
-		</div>
+		<md-input-container>
+			<input type="{{showPassword ? 'text' : 'password' }}" name="password" placeholder="{{ 'Common.Form.Placeholder.Password' | translate }}" required ng-model="password">
+			<md-icon class="fa fa-eye" ng-if="!showPassword" ng-click="togglePasswordVisibility()"></md-icon>
+			<md-icon class="fa fa-eye-slash" ng-if="showPassword" ng-click="togglePasswordVisibility()"></md-icon>
 
-		<input type="submit" class="btn btn-lg btn-primary btn-block" value="{{ 'Common.Action.Ok' | translate }}">
+			<div ng-messages="loginForm.password.$error">
+				<div ng-message="required">{{ 'Common.Form.Feedback.Password' | translate}}</div>
+			</div>
+		</md-input-container>
+
+		<md-button type="submit" aria-label="submit">{{ 'Common.Action.Ok' | translate }}</md-button>
 	</form>
 <div>

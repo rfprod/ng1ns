@@ -1,19 +1,24 @@
 'use strict';
 
-angular.module('ng1ns', [ // eslint-disable-line no-unused-vars
-	'angularSpinner',
-	'ngAnimate',
-	'ngResource',
-	'ngSanitize',
-	'ngTouch',
-	'pascalprecht.translate',
-	'ui.router',
-	'ui.bootstrap',
+angular
+	.module('ng1ns', [ // eslint-disable-line no-unused-vars
+		'angularSpinner',
+		'ngAnimate',
+		'ngResource',
+		'ngSanitize',
+		'pascalprecht.translate',
+		'ngAria',
+		'ngMessages',
+		'ngMaterial',
+		'ui.router',
 
-	'ng1ns.version'
-])
-	.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'usSpinnerConfigProvider',
-		function($stateProvider, $urlRouterProvider, $locationProvider, usSpinnerConfigProvider) {
+		'ng1nsControllers',
+		'ng1nsServices',
+		'ng1nsDirectives',
+		'ng1ns.version'
+	])
+	.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'usSpinnerConfigProvider', '$mdThemingProvider',
+		function($stateProvider, $urlRouterProvider, $locationProvider, usSpinnerConfigProvider, $mdThemingProvider) {
 			$urlRouterProvider.otherwise('/app/sign-in');
 
 			$stateProvider
@@ -36,6 +41,13 @@ angular.module('ng1ns', [ // eslint-disable-line no-unused-vars
 				});
 
 			$locationProvider.html5Mode({enabled: true, requireBase: true});
+
+			$mdThemingProvider.theme('default')
+				.primaryPalette('blue-grey')
+				.accentPalette('amber')
+				.warnPalette('red')
+				//.backgroundPalette('blue-grey')
+				.dark();
 
 			usSpinnerConfigProvider.setDefaults({
 				lines: 13, // The number of lines to draw
@@ -77,3 +89,7 @@ angular.module('ng1ns', [ // eslint-disable-line no-unused-vars
 			});
 		}
 	]);
+
+var ng1nsControllers = angular.module('ng1nsControllers', []); // eslint-disable-line no-unused-vars
+var ng1nsServices = angular.module('ng1nsServices', []); // eslint-disable-line no-unused-vars
+var ng1nsDirectives = angular.module('ng1nsDirectives', []); // eslint-disable-line no-unused-vars

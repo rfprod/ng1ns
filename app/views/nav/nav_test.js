@@ -22,12 +22,6 @@ describe('ng1ns.nav module', function() {
 
 		it('should have proper definitions', function() {
 			expect(scope.user).toBeDefined();
-			expect(scope.isAdmin).toBeDefined();
-			expect(scope.showNavigation).toBeDefined();
-			expect(scope.hasOwnProperty('navToggler')).toBeTruthy();
-			expect(scope.collapseNavbar).toBeDefined();
-			expect(scope.collapseNavbar).toBeFalsy();
-			expect(scope.toggleNavbarCollapse).toBeDefined();
 			expect(scope.logout).toBeDefined();
 		});
 

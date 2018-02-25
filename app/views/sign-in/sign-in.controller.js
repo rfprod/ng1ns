@@ -1,12 +1,8 @@
 'use strict';
 
-angular.module('ng1ns')
+/* global ng1nsControllers */
 
-/*
-*	TODO
-*	reconfig this working example
-*/
-
+ng1nsControllers
 	.controller('SignInController', ['$rootScope', '$scope', '$state', 'API', 'UserService', 'usSpinnerService',
 		function($rootScope, $scope, $state, API, UserService, usSpinnerService) {
 			$scope.displayError = false;
@@ -19,6 +15,10 @@ angular.module('ng1ns')
 			$scope.email = '';
 			$scope.password = '';
 			$scope.user = UserService;
+			$scope.showPassword = false;
+			$scope.togglePasswordVisibility = function() {
+				$scope.showPassword = ($scope.showPassword) ? false : true;
+			};
 			$scope.signUserIn = function(isFormValid) {
 				$scope.submitted = true;
 				if (isFormValid) {

@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('ng1ns')
+/* global ng1nsServices */
 
+ng1nsServices
 	.factory('UserService', ['$rootScope', function($rootScope) {
 		/*
 		* TODO

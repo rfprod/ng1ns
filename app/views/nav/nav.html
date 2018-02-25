@@ -1,48 +1,48 @@
-<nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavigationController">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" ng-click="toggleNavbarCollapse()" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" ui-sref="app.sign-in"><i class="fa fa-users"></i> {{ 'Nav.Header' | translate }}</a>
-		</div>
-		<div id="navbar" class="collapse navbar-collapse" uib-collapse="!collapseNavbar">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="nav-divider30"></li>
-				<li ui-sref-active="active" ng-if="showNavigation()">
-					<a ng-if="!isAdmin()" ui-sref="app.user.dashboard" ng-click="toggleNavbarCollapse()">
-						<i class="glyphicon glyphicon-blackboard"></i> {{ 'Page.Title.Dashboard' | translate }}
-					</a>
+<md-toolbar flex class="md-toolbar-tools md-medium" layout="row" ng-controller="NavigationController">
+	<h1>
+		<a class="navbar-brand" ui-sref="app.sign-in">
+			<i class="fa fa-users"></i>
+			<span class="hide-sm hide-md hide-lg hide-xl">Ng1NS</span>
+			<span class="hide-xs">{{ 'Nav.Header' | translate }}</span>
+		</a>
+	</h1>
+	<span flex="1 1 auto" layout="row" layout-align="center center"></span>
 
-					<a ng-if="isAdmin()" ui-sref="app.admin.dashboard" ng-click="toggleNavbarCollapse()">
-						<i class="glyphicon glyphicon-blackboard"></i> {{ 'Page.Title.Dashboard' | translate }}
-					</a>
-				</li>
-				<li ui-sref-active="active" ng-if="showNavigation()">
-					<a ui-sref="app.profile" ng-click="toggleNavbarCollapse()">
-						<i class="glyphicon glyphicon-user"></i> {{ 'Page.Title.Profile' | translate }}
-					</a>
-				</li>
+	<span ng-controller="TranslateController" class="hide-xs hide-sm">
+		<a md-button ng-click="changeLanguage('en')">
+			<i class="fa fa-globe"></i> English
+		</a>
+		<a md-button ng-click="changeLanguage('ru')">
+			<i class="fa fa-globe"></i> Русский
+		</a>
+	</span>
 
-				<li class="dropdown" ng-if="showNavigation(true)">
-					<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						<i class="glyphicon glyphicon-globe"></i> {{ 'Common.Action.Language' | translate }} <span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu" ng-controller="TranslateController">
-						<li><a ng-click="changeLanguage('en')">English</a></li>
-						<li><a ng-click="changeLanguage('ru')">Русский</a></li>
-					</ul>
-				</li>
+	<a md-button ng-click="logout()" class="hide-xs hide-sm">
+		<i class="fa fa-power-off"></i> {{ 'Common.Action.Logout' | translate }}
+	</a>
 
-				<li ng-if="showNavigation()">
-					<a ng-click="logout()" ng-click="toggleNavbarCollapse()">
-						<i class="glyphicon glyphicon-off"></i> {{ 'Common.Action.Logout' | translate }}
+	<md-menu class="hide-md hide-lg hide-xl primary">
+		<md-button aria-label="Open navigation menu" class="md-icon-button" ng-click="$mdMenu.open()">
+			<i class="fa fa-bars"></i>
+		</md-button>
+		<md-menu-content>
+			<span ng-controller="TranslateController">
+				<md-menu-item>
+					<a md-button ng-click="changeLanguage('en')">
+						<i class="fa fa-globe"></i> English
 					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</nav>
+				</md-menu-item>
+				<md-menu-item>
+					<a md-button ng-click="changeLanguage('ru')">
+						<i class="fa fa-globe"></i> Русский
+					</a>
+				</md-menu-item>
+			</span>
+			<md-menu-item>
+				<a md-button ng-click="logout()">
+					<i class="fa fa-power-off"></i> {{ 'Common.Action.Logout' | translate }}
+				</a>
+			</md-menu-item>
+		</md-menu-content>
+	</md-menu>
+</md-toolbar>

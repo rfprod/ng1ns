@@ -1,35 +1,31 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="ng1ns" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="ng1ns" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="ng1ns" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" ng-app="ng1ns" class="no-js"> <!--<![endif]-->
+
+<html lang="en" ng-app="ng1ns" class="no-js">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AngularJS application starter kit</title>
-	<meta name="description" content="Angular 1 application starter kit">
+	<title>Ng1NS</title>
+	<meta name="description" content="AngularJS application starter kit">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<base href="/">
 	<link rel="stylesheet" type="text/css" href="css/vendor-pack.min.css">
 	<link rel="stylesheet" type="text/css" href="css/packed-app.min.css">
 </head>
-<body>
-	<!--[if lt IE 7]>
-		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
+<body layout="column" layout-align="start stretch" layout-padding class="md-body-1">
 
-	<div ng-include="'views/nav/nav.html'"></div>
+	<md-content flex>
+		<div ng-include="'views/nav/nav.html'"></div>
 
-	<div class="output" ui-view></div>
+		<div ui-view></div>
 
-	<span class="spinner" us-spinner spinner-key="root-spinner"></span>
+		<span class="spinner" us-spinner spinner-key="root-spinner"></span>
 
-	<div ng-include="'views/common/footer.html'"></div>
+		<div ng-include="'views/common/footer.html'"></div>
+	</md-content>
 
-    <script src="js/vendor-pack.min.js"></script>
-    <script src="js/packed-app.min.js"></script>
+	<script src="js/vendor-pack.min.js"></script>
+	<script src="js/packed-app.min.js"></script>
 
 </body>
 </html>
