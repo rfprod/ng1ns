@@ -67,4 +67,4 @@ npm test
 
 ## Licenses
 
-* [`Ng1NS`](LICENSE.md)
+* [`Ng1NS`](LICENSE)
