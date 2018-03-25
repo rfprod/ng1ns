@@ -38,7 +38,7 @@ function killProcessByName(name){
 	});
 }
 
-gulp.task('dev-server', (done) => {
+gulp.task('dev-server', () => {
 	if (httpServer) httpServer.emit('kill');
 	httpServer = gulp.src('./app').pipe(webserver({
 		host: 'localhost',
@@ -58,7 +58,7 @@ gulp.task('dev-server', (done) => {
 			next();
 		}
 	}));
-	done();
+	return httpServer;
 });
 
 gulp.task('client-unit-test', (done) => {
